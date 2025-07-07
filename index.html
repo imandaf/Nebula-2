@@ -4,73 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NebulaOS Docs</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Mengatur font Inter untuk seluruh body */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f8fa; /* Warna latar belakang yang lebih terang */
+      color: #333;
+    }
+    /* Styling untuk sidebar */
+    .sidebar {
+      background-color: #ffffff; /* Latar belakang sidebar putih */
+      border-right: 1px solid #e0e0e0;
+      padding: 1.5rem;
+      width: 256px; /* Lebar tetap untuk sidebar */
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+    /* Styling untuk header utama */
+    .main-header {
+      background-color: #ffffff; /* Latar belakang header putih */
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+    /* Styling untuk area konten utama */
+    .content-main {
+      flex-grow: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      background-color: #ffffff; /* Latar belakang area konten putih */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sedikit bayangan untuk konten */
+      max-width: 1024px; /* Lebar maksimum untuk konten */
+      margin: 0 auto; /* Pusatkan konten */
+    }
+    /* Styling untuk input pencarian */
+    .search-input {
+      border: 1px solid #d1d5db;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px; /* Bentuk pil */
+      width: 100%;
+      max-width: 300px;
+      background-color: #f3f4f6; /* Latar belakang abu-abu muda */
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    }
+    /* Styling untuk item navigasi aktif di sidebar */
+    .nav-item.active {
+      background-color: #f3f4f6; /* Latar belakang abu-abu muda untuk item aktif */
+      font-weight: 600;
+      color: #4f46e5; /* Warna teks biru untuk item aktif */
+    }
+    /* Hover state untuk item navigasi */
+    .nav-item:hover {
+      background-color: #f3f4f6;
+    }
+    /* Styling untuk tombol install */
+    .install-button {
+      background-color: #8b5cf6; /* Warna ungu */
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .install-button:hover {
+      background-color: #7c3aed; /* Warna ungu lebih gelap saat hover */
+    }
+    /* Styling untuk tombol login */
+    .login-button {
+      background-color: transparent;
+      border: 1px solid #d1d5db;
+      color: #4b5563;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .login-button:hover {
+      background-color: #f3f4f6;
+    }
+    /* Layout utama */
+    .container-wrapper {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f8f8fa;
+    }
+  </style>
 </head>
-<body>
-  <div class="container">
+<body class="flex flex-col min-h-screen">
+  <header class="main-header">
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center text-lg font-semibold text-gray-800">
+        <span class="text-purple-600 mr-1">Nebula</span>OS
+      </div>
+      <nav class="hidden md:flex space-x-6 text-gray-600 text-sm">
+        <a href="#" class="hover:text-purple-600">API Reference</a>
+        <a href="#" class="hover:text-purple-600">Guides</a>
+        <a href="#" class="hover:text-purple-600">Help Center</a>
+        <a href="#" class="hover:text-purple-600">Changelog</a>
+      </nav>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="relative hidden md:block">
+        <input type="text" placeholder="Ask or search…" class="search-input pl-10 pr-4 py-2 text-sm text-gray-700">
+        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.085.12l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.12-.085zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </div>
+      <button class="login-button">Login</button>
+      <button class="install-button">Install NebulaOS</button>
+    </div>
+  </header>
+
+  <div class="container-wrapper flex-1 flex">
     <aside class="sidebar">
-      <h1>NebulaOS DOCS</h1>
-      <input type="text" placeholder="Ask or search…" />
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">NebulaOS DOCS</h1>
+      <input type="text" placeholder="Ask or search…" class="search-input mb-6">
       <nav>
-        <h3>Published Docs</h3>
-        <ul>
-          <li>API Reference</li>
-          <li>Guides</li>
-          <li>Help Center</li>
-          <li>Changelog</li>
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-4">Published Docs</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">API Reference</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Guides</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Help Center</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Changelog</a></li>
         </ul>
-        <h3>Resources</h3>
-        <ul>
-          <li class="active">Introduction</li>
-          <li>Quickstart</li>
-          <li>Basic configuration</li>
-          <li>Theme configuration</li>
-          <li>Technical Architecture</li>
-          <li>Code Library</li>
+
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mt-8 mb-4">Resources</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="active nav-item"><a href="#" class="block p-2 rounded-lg text-gray-700 active">Introduction</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Quickstart</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Basic configuration</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Theme configuration</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Technical Architecture</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Code Library</a></li>
         </ul>
-        <h3>Development Process</h3>
-        <ul>
-          <li>Early Planning</li>
-          <li>System Installation</li>
-          <li>System Configuration</li>
-          <li>Launch Procedures</li>
-          <li>Monitoring</li>
-          <li>Troubleshooting</li>
+
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mt-8 mb-4">Development Process</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Early Planning</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">System Installation</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">System Configuration</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Launch Procedures</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Monitoring</a></li>
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Troubleshooting</a></li>
         </ul>
-        <h3>Development Guides</h3>
-        <ul>
-          <li>Emulation Guide</li>
+
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mt-8 mb-4">Development Guides</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="block p-2 rounded-lg text-gray-700 hover:bg-gray-100">Emulation Guide</a></li>
         </ul>
       </nav>
     </aside>
 
-    <main class="content">
-      <header>
-        <div class="nav-links">
-          <a href="#">API Reference</a>
-          <a href="#">Guides</a>
-          <a href="#">Help Center</a>
-          <a href="#">Changelog</a>
-        </div>
-        <div class="actions">
-          <button>Login</button>
-          <button class="install">Install NebulaOS</button>
-        </div>
-      </header>
-
+    <main class="content-main">
       <section class="intro">
-        <h2>Introduction</h2>
-        <p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
           NebulaOS is an open-source, distributed operating system incubated and operated by the OpenHQ Foundation.
         </p>
-        <h3>Quickstart</h3>
-        <ol>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">Quickstart</h3>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700">
           <li>Getting Started: Discover how to set up NebulaOS for development and access the source code.</li>
           <li>Basic configuration</li>
         </ol>
       </section>
     </main>
   </div>
-  <script src="script.js"></script>
 </body>
-</html
+</html>
